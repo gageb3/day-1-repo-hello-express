@@ -15,20 +15,20 @@ app.use(express.json());
 
 
 app.get('/', (req, res) => {
-  res.send('Hello Express from Render 😍😍😍. <a href="barry">barry</a>')
+  res.send('Hello Express from Render 😍😍😍. <a href="gage">gage</a>')
 })
 
 // endpoints...middlewares...apis? 
 
 // send an html file
-app.get('/barry', (req, res) => {
+app.get('/gage', (req, res) => {
  
-  res.sendFile(join(__dirname, 'public', 'barry.html')) 
+  res.sendFile(join(__dirname, 'public', 'gage.html')) 
 
 })
 
-app.get('/api/barry', (req, res) => {
-  // res.send('barry. <a href="/">home</a>')
+app.get('/api/gage', (req, res) => {
+  // res.send('gage. <a href="/">home</a>')
   const myVar = 'Hello from server!';
   res.json({ myVar });
 })
