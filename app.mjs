@@ -1,7 +1,11 @@
+import 'dotenv/config'
 import express from 'express'
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
-import { MongoClient, ServerApiVersion } from 'mongodb';
+import { MongoClient, ServerApiVersion, ObjectId } from 'mongodb';
+
+const uri = process.env.MONGO_URI;
+
 
 const app = express()
 const PORT = process.env.PORT || 3000; 
@@ -13,6 +17,43 @@ app.use(express.static(join(__dirname, 'public')));
 app.use(express.json()); 
 
 // for pull request assignment
+
+
+// Create a MongoClient with a MongoClientOptions object to set the Stable API version
+const client = new MongoClient(uri, {
+  serverApi: {
+    version: ServerApiVersion.v1,
+    strict: true,
+    deprecationErrors: true,
+  }
+});
+
+// Keep the connection open for our CRUD operations
+let db;
+async function connectDB() {
+  try {
+    await client.connect();
+    db = client.db('school'); // Database name
+    console.log("Connected to MongoDB!");
+  } catch(error) {
+      console.error('');
+    }
+  }
+
+async function run() {
+  try {
+    // Connect the client to the server	(optional starting in v4.7)
+    await client.connect();
+    // Send a ping to confirm a successful connection
+    await client.db("admin").command({ ping: 1 });
+    console.log("Pinged your deployment. You successfully connected to MongoDB!");
+  } finally {
+    // Ensures that the client will close when you finish/error
+    await client.close();
+  }
+}
+run().catch(console.dir);
+
 
 app.get('/', (req, res) => {
   res.send('Hello Express from Render 😍😍😍. <a href="gage">gage</a>')

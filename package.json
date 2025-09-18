@@ -1,5 +1,5 @@
 {
-  "name": "stunning-octo-fortnight-hello-express",
+  "name": "day-1-repo-hello-express",
   "version": "1.0.0",
   "main": "app.js",
   "dependencies": {
@@ -14,7 +14,7 @@
     "cookie-signature": "^1.2.2",
     "debug": "^4.4.1",
     "depd": "^2.0.0",
-    "dotenv": "^17.2.1",
+    "dotenv": "^17.2.2",
     "dunder-proto": "^1.0.1",
     "ee-first": "^1.1.1",
     "encodeurl": "^2.0.0",
